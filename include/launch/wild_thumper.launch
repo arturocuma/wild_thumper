@@ -13,7 +13,7 @@
 	  <param name="inverted"            type="bool"   value="false"/>
 	  <param name="angle_compensate"    type="bool"   value="true"/>
   	</node>
-        <node name="rviz" pkg="rviz" type="rviz"/>
+
 
         
 </launch>
