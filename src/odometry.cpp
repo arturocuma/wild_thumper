@@ -7,9 +7,9 @@
 
 double vel_x = 0.0;
 double vel_y = 0.0;
-double ang_z = 0.0;
-
 double vel_th = 0.0;
+
+double dt = 0.0;
 
 ros::Time last_vel_time(0.0);
 
@@ -21,9 +21,9 @@ void velCallback(const geometry_msgs::Twist& msg)
 
   vel_x = msg.linear.x;
   vel_y = msg.linear.y;
-  ang_z = msg.angular.z;
+  vel_th = msg.angular.z;
 
-  vel_th = (current_time - last_vel_time).toSec();
+  dt = (current_time - last_vel_time).toSec();
   last_vel_time = current_time;
 }
 
@@ -37,12 +37,8 @@ int main(int argc, char** argv){
 
   double x = 0.0;
   double y = 0.0;
+  double z = 0.0; 
   double th = 0.0;
-
-  double vx = 0.0;
-  double vy = 0.0;
-  double vth = 0.0;
-  double dt = 0.0;
 
   double rate = 10.0;
 
@@ -55,20 +51,16 @@ int main(int argc, char** argv){
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();
 
-    vx = vel_x;
-    vx = vel_y;
-    vth = ang_z;
-    dt = vel_th;
-
     //compute odometry in a typical way given the velocities of the robot
-    double delta_th = vth * dt;
-    double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
-    double delta_y = (vx * sin(th) + vy * cos(th)) * dt;
+    double delta_x = (vel_x * cos(th) - vel_y * sin(th)) * dt;
+    double delta_y = (vel_x * sin(th) + vel_y * cos(th)) * dt;
+    double delta_th = vel_th * dt;
     
 
     //Position of the robot
     x += delta_x;
     y += delta_y;
+    z = 0.082;
     th += delta_th;
 
     //since all odometry is 6DOF we'll need a quaternion created from yaw
@@ -82,7 +74,7 @@ int main(int argc, char** argv){
 
     odom_trans.transform.translation.x = x;
     odom_trans.transform.translation.y = y;
-    odom_trans.transform.translation.z = 0.0;
+    odom_trans.transform.translation.z = z;
     odom_trans.transform.rotation = odom_quat;
 
     //send the transform
@@ -96,14 +88,14 @@ int main(int argc, char** argv){
     //set the position
     odom.pose.pose.position.x = x;
     odom.pose.pose.position.y = y;
-    odom.pose.pose.position.z = 0.0;
+    odom.pose.pose.position.z = z;
     odom.pose.pose.orientation = odom_quat;
 
     //set the velocity
     odom.child_frame_id = "base_link";
-    odom.twist.twist.linear.x = vx;
-    odom.twist.twist.linear.y = vy;
-    odom.twist.twist.angular.z = vth;
+    odom.twist.twist.linear.x = vel_x;
+    odom.twist.twist.linear.y = vel_y;
+    odom.twist.twist.angular.z = vel_th;
 
     //publish the message
     odom_pub.publish(odom);

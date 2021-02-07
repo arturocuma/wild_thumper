@@ -2,10 +2,16 @@
 <robot name="wild_thumper" xmlns:xacro="http://ros.org/wiki/xacro">
 	<xacro:property name="PI" value="3.1415926535897931" />
         <material name="Black">
-           <color rgba="${45/255} ${45/255} ${45/255} 1.0"/>
+            <color rgba="${45/255} ${45/255} ${45/255} 1.0"/>
         </material>
-	
-       
+	    
+        <link name="base_footprint">
+            <visual>
+                <geometry>
+                    <box size="0.28 0.31 0.000001"/>
+                </geometry> 
+            </visual>    
+        </link>
 	<link name="base_link">
 		<collision>
 			<geometry>
@@ -14,7 +20,7 @@
 		</collision>
 		<visual>
                         <material name="Black"/> 
-                        <origin xyz="-0.00275 0 0" rpy="0 0 0"/>  
+                        <origin xyz="-0.00275 0 0.0" rpy="0 0 0"/>  
 			<geometry>
 				<mesh filename="package://wild_thumper/include/meshes/wild_thumper_4wd.stl" /> 
 			</geometry>
@@ -51,8 +57,13 @@
 			</geometry>
 		</visual>
 	</link>
+ 
+        <joint name="base_link_joint" type="fixed">
+                <origin rpy="0 0 0" xyz="0 0 -0.082 "/>
+                <child link="base_footprint"/>
+                <parent link="base_link"/>
 
-
+        </joint> 
         <joint name="mount_spacer_joint" type="fixed">
 		<parent link="base_link"/>
 		<child link="mount_spacers"/>
