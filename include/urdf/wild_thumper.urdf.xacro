@@ -5,7 +5,16 @@
            <color rgba="${45/255} ${45/255} ${45/255} 1.0"/>
         </material>
 	
-
+        <link name="base_footprint">
+		<visual>
+			<geometry>
+				<box size="0.28 0.31 0.000001"/>
+			</geometry>
+			<material name="grey">
+				<color rgba="0.5 0.5 0.5 0.5"/>
+			</material>
+		</visual>
+	</link>
 	<link name="base_link">
 		<collision>
 			<geometry>
@@ -19,6 +28,11 @@
 				<mesh filename="package://wild_thumper/include/meshes/wild_thumper_4wd.stl" /> 
 			</geometry>
 		</visual>
+                <inertial>
+			<origin xyz="-0.00275 0 -0.02" rpy="0 0 0"/>
+			<mass value="2.5"/>
+			<inertia ixx="0.012708" ixy="0.0" ixz="0.0" iyy="0.0084375" iyz="0.0" izz="0.017771"/>
+		</inertial>
 	</link>
 
         <link name="mount_spacers">
@@ -53,6 +67,11 @@
 	</link>
 
 
+        <joint name="base_link_joint" type="fixed">
+		<parent link="base_footprint"/>
+		<child link="base_link"/>
+		<origin xyz="0.0 0.0 0.082" rpy="0 0 0"/>
+	</joint>
         <joint name="mount_spacer_joint" type="fixed">
 		<parent link="base_link"/>
 		<child link="mount_spacers"/>
