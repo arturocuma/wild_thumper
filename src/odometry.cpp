@@ -13,7 +13,7 @@ double vel_th = 0.0;
 void velCallback(const geometry_msgs::Twist& msg)
 {
   //callback every time the robot's linear velocity is received
-  current_time = ros::Time::now();
+  //current_time = ros::Time::now();
 
   vel_x = msg.linear.x;
   vel_y = msg.linear.y;
@@ -57,6 +57,10 @@ int main(int argc, char** argv){
     
 
     //Position of the robot
+    std::cout << dt;
+    std::cout << "x y z: ";
+    std::cout << x << " " << y << " "<< z;
+
     x += delta_x;
     y += delta_y;
     z = 0.082;
