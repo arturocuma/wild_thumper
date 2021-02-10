@@ -27,8 +27,8 @@ int main(int argc, char** argv){
   ros::init(argc, argv, "odometry_publisher");
 
   ros::NodeHandle nh;
-  ros::Subscriber sub = nh.subscribe("motor_control", 50, velCallback);
-  ros::Publisher odom_pub = nh.advertise<nav_msgs::Odometry>("odom", 50);
+  ros::Subscriber sub = nh.subscribe("motor_control", 100, velCallback);
+  ros::Publisher odom_pub = nh.advertise<nav_msgs::Odometry>("odom", 100);
   tf::TransformBroadcaster odom_broadcaster;
 
   double x = 0.0;
@@ -37,7 +37,7 @@ int main(int argc, char** argv){
   double dt = 0.0;
   double th = 0.0;
 
-  double rate = 10.0;
+  double rate = 30.0;
 
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
@@ -98,7 +98,8 @@ int main(int argc, char** argv){
 
     //publish the message
     odom_pub.publish(odom);
-    r.sleep();
     last_time = current_time;
+    r.sleep();
+    
   }
 }
