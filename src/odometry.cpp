@@ -9,11 +9,6 @@ double vel_x = 0.0;
 double vel_y = 0.0;
 double vel_th = 0.0;
 
-double dt = 0.0;
-
-ros::Time last_vel_time(0.0);
-ros::Time current_time(0.0);
-
 
 void velCallback(const geometry_msgs::Twist& msg)
 {
@@ -24,8 +19,8 @@ void velCallback(const geometry_msgs::Twist& msg)
   vel_y = msg.linear.y;
   vel_th = msg.angular.z;
 
-  dt = (current_time - last_vel_time).toSec();
-  last_vel_time = current_time;
+  //dt = (current_time - last_vel_time).toSec();
+  //last_vel_time = current_time;
 }
 
 int main(int argc, char** argv){
@@ -39,20 +34,23 @@ int main(int argc, char** argv){
   double x = 0.0;
   double y = 0.0;
   double z = 0.0; 
+  double dt = 0.0;
   double th = 0.0;
 
   double rate = 10.0;
 
-  ros::Time current_time;
+  ros::Time current_time, last_time;
   current_time = ros::Time::now();
+  last_time = ros::Time::now();
 
   ros::Rate r(rate);
   while(nh.ok()){
 
     ros::spinOnce();               // check for incoming messages
-    //current_time = ros::Time::now();
+    current_time = ros::Time::now();
 
     //compute odometry in a typical way given the velocities of the robot
+    dt = (current_time - last_time).toSec();
     double delta_x = (vel_x * cos(th) - vel_y * sin(th)) * dt;
     double delta_y = (vel_x * sin(th) + vel_y * cos(th)) * dt;
     double delta_th = vel_th * dt;
@@ -100,6 +98,7 @@ int main(int argc, char** argv){
 
     //publish the message
     odom_pub.publish(odom);
+    last_time = current_time;
     r.sleep();
   }
 }
