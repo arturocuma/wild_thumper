@@ -12,12 +12,13 @@ double vel_th = 0.0;
 double dt = 0.0;
 
 ros::Time last_vel_time(0.0);
+ros::Time current_time(0.0);
 
 
 void velCallback(const geometry_msgs::Twist& msg)
 {
   //callback every time the robot's linear velocity is received
-  ros::Time current_time = ros::Time::now();
+  current_time = ros::Time::now();
 
   vel_x = msg.linear.x;
   vel_y = msg.linear.y;
@@ -49,7 +50,7 @@ int main(int argc, char** argv){
   while(nh.ok()){
 
     ros::spinOnce();               // check for incoming messages
-    current_time = ros::Time::now();
+    //current_time = ros::Time::now();
 
     //compute odometry in a typical way given the velocities of the robot
     double delta_x = (vel_x * cos(th) - vel_y * sin(th)) * dt;
