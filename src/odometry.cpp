@@ -45,7 +45,7 @@ int main(int argc, char** argv){
 
   ros::Rate r(rate);
   while(nh.ok()){
-
+    
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();
 
@@ -98,7 +98,7 @@ int main(int argc, char** argv){
 
     //publish the message
     odom_pub.publish(odom);
-    last_time = current_time;
     r.sleep();
+    last_time = current_time;
   }
 }
