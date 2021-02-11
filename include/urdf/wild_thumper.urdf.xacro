@@ -37,7 +37,7 @@
 		</visual>
 	</link>
    
-        <link name="mount_lidar">
+    <link name="mount_lidar">
 		<visual>
                         <material name="Black"/> 
                         <origin xyz="0 0 0" rpy="0 0 0"/>  
@@ -47,7 +47,7 @@
 		</visual>
 	</link>
       
-        <link name="laser">
+    <link name="laser">
 		<visual>
                         <material name="Black"/> 
                         <axis xyz="1 0 0" rpy="0 0 0"/>   
@@ -57,29 +57,43 @@
 			</geometry>
 		</visual>
 	</link>
- 
-        <joint name="base_link_joint" type="fixed">
-                <origin rpy="0 0 0" xyz="0 0 -0.082 "/>
-                <child link="base_footprint"/>
-                <parent link="base_link"/>
 
-        </joint> 
-        <joint name="mount_spacer_joint" type="fixed">
+	<link name="imu_link">
+		<visual>
+                <geometry>
+                    <box size="0.02 0.02 0.02"/>
+                </geometry> 
+            </visual> 
+	</link>
+ 
+    <joint name="base_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 -0.082 "/>
+        <child link="base_footprint"/>
+        <parent link="base_link"/>
+    </joint> 
+
+    <joint name="mount_spacer_joint" type="fixed">
 		<parent link="base_link"/>
 		<child link="mount_spacers"/>
 		<origin xyz="0.00 0.0 0.06" rpy="0 0 0"/>
 	</joint>
 
-        <joint name="mount_lidar" type="fixed">
+    <joint name="mount_lidar" type="fixed">
 		<parent link="base_link"/>
 		<child link="mount_lidar"/>
 		<origin xyz="-0.07 0 0.086" rpy="0 0 0"/>
 	</joint>
 
-       <joint name="laser" type="fixed">
+    <joint name="laser" type="fixed">
 		<parent link="base_link"/>
 		<child link="laser"/>
-                <origin xyz="-0.08 0 0.150" rpy="0 0 0"/>  
+        <origin xyz="-0.08 0 0.150" rpy="0 0 0"/>  
+	</joint>
+
+    <joint name="base_imu_link" type="fixed">
+		<parent link="base_link"/>
+		<child link="imu_link"/>
+        <origin xyz="0.00 0 0.10" rpy="0 0 0"/>  
 	</joint>
 
         <xacro:macro name="wheel" params="pos side xyz rpy">   
