@@ -93,13 +93,13 @@
     <joint name="base_imu" type="fixed">
 		<parent link="base_link"/>
 		<child link="base_imu_link"/>
-        <origin xyz="0.00 0 0.10" rpy="0 0 0"/>  
+        <origin xyz="0.05 -0.01 0.09" rpy="0 0 0"/>  
 	</joint>
 
-        <xacro:macro name="wheel" params="pos side xyz rpy">   
+    <xacro:macro name="wheel" params="pos side xyz rpy">   
 		<link name="${pos}_${side}_wheel">
 			<visual>
-                                <material name="Black"/>   
+                <material name="Black"/>   
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
 					<mesh filename="package://wild_thumper/include/meshes/wheel_${side}.stl" />
@@ -114,10 +114,10 @@
 			<inertial>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<mass value="0.2"/>
-				<inertia ixx="0.00024" ixy="0" ixz="0" iyy="0.00036" iyz="0" izz="0.00024"/>
+				<inertia ixx="0.00024" ixy="0" ixz="0" iyy="0.00024" iyz="0" izz="0.00024"/>
 			</inertial>
 		</link>
-
+  
 
 		<joint name="${pos}_${side}_wheel_joint" type="continuous">
                         <axis xyz="0 1 0" rpy="0 0 0"/>  
@@ -128,7 +128,10 @@
 
 	</xacro:macro>
 
-        <xacro:macro name="spacer" params="sensor num len rad xyz">
+	
+
+
+    <xacro:macro name="spacer" params="sensor num len rad xyz">
              <link name="${sensor}_${num}_spacer">
                 <visual>
                     <geometry>
@@ -141,22 +144,22 @@
 		<child link="${sensor}_${num}_spacer"/>
 		<origin xyz="${xyz}" rpy="0 0 0"/>
             </joint>
-        </xacro:macro>  
+    </xacro:macro>  
 
-        <xacro:wheel pos="rear" side="left"   xyz="-0.07525  0.12 -0.025" rpy="0 0 0" />
-	<xacro:wheel pos="rear" side="right"  xyz="-0.07525 -0.12 -0.025" rpy="0 0 0" />
-	<xacro:wheel pos="front" side="left"  xyz=" 0.07525  0.12 -0.025" rpy="0 0 0" />
-	<xacro:wheel pos="front" side="right" xyz=" 0.07525 -0.12 -0.025" rpy="0 0 0" />
+    <xacro:wheel pos="rear" side="left"  xyz="-0.07525 0.12 -0.025" rpy="0 0 0" />
+    <xacro:wheel pos="rear" side="right"  xyz="-0.07525 -0.12 -0.025" rpy="0 0 0" />
+	<xacro:wheel pos="front" side="left"  xyz="0.07525 0.12 -0.025" rpy="0 0 0" />
+	<xacro:wheel pos="front" side="right" xyz="0.07525 -0.12 -0.025" rpy="0 0 0" />
 
-        <xacro:spacer sensor="lidar" num="1_1" len="0.01" rad="0.0025" xyz="-0.03 -0.04 0.020" />  
-        <xacro:spacer sensor="lidar" num="1_2" len="0.01" rad="0.0025" xyz="-0.03  0.04 0.020" />
-        <xacro:spacer sensor="lidar" num="1_3" len="0.01" rad="0.0025" xyz="-0.11 -0.04 0.020" />  
-        <xacro:spacer sensor="lidar" num="1_4" len="0.01" rad="0.0025" xyz="-0.11  0.04 0.020" />  
+    <xacro:spacer sensor="lidar" num="1_1" len="0.01" rad="0.0025" xyz="-0.03 -0.04 0.020" />  
+    <xacro:spacer sensor="lidar" num="1_2" len="0.01" rad="0.0025" xyz="-0.03 0.04 0.020" />
+    <xacro:spacer sensor="lidar" num="1_3" len="0.01" rad="0.0025" xyz="-0.11 -0.04 0.020" />  
+    <xacro:spacer sensor="lidar" num="1_4" len="0.01" rad="0.0025" xyz="-0.11 0.04 0.020" />  
 
-        <xacro:spacer sensor="lidar" num="2_1" len="0.02" rad="0.0028" xyz="-0.035 -0.02 0.035" />  
-        <xacro:spacer sensor="lidar" num="2_2" len="0.02" rad="0.0028" xyz="-0.035  0.02 0.035" />
-        <xacro:spacer sensor="lidar" num="2_3" len="0.02" rad="0.0028" xyz="-0.105 -0.028 0.035" />  
-        <xacro:spacer sensor="lidar" num="2_4" len="0.02" rad="0.0028" xyz="-0.105  0.028 0.035" />  
+    <xacro:spacer sensor="lidar" num="2_1" len="0.02" rad="0.0028" xyz="-0.035 -0.02 0.035" />  
+    <xacro:spacer sensor="lidar" num="2_2" len="0.02" rad="0.0028" xyz="-0.035 0.02 0.035" />
+    <xacro:spacer sensor="lidar" num="2_3" len="0.02" rad="0.0028" xyz="-0.105 -0.028 0.035" />  
+    <xacro:spacer sensor="lidar" num="2_4" len="0.02" rad="0.0028" xyz="-0.105 0.028 0.035" />  
 
 
 </robot>
