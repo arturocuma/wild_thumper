@@ -19,8 +19,8 @@
 			</geometry>
 		</collision>
 		<visual>
-                        <material name="Black"/> 
-                        <origin xyz="-0.00275 0 0.0" rpy="0 0 0"/>  
+            <material name="Black"/> 
+            <origin xyz="-0.00275 0 0.0" rpy="0 0 0"/>  
 			<geometry>
 				<mesh filename="package://wild_thumper/include/meshes/wild_thumper_4wd.stl" /> 
 			</geometry>
@@ -29,18 +29,18 @@
 
         <link name="mount_spacers">
 		<visual>
-                        <material name="Black"/> 
-                        <origin xyz="0 0 0" rpy="0 0 0"/>  
+            <material name="Black"/> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>  
 			<geometry>
-				<box size="0.24 0.12 0.03"/>
+			<box size="0.24 0.12 0.03"/>
 			</geometry>
 		</visual>
 	</link>
    
     <link name="mount_lidar">
 		<visual>
-                        <material name="Black"/> 
-                        <origin xyz="0 0 0" rpy="0 0 0"/>  
+            <material name="Black"/> 
+            <origin xyz="0 0 0" rpy="0 0 0"/>  
 			<geometry>
 				<box size="0.09 0.087 0.002"/>
 			</geometry>
@@ -49,10 +49,10 @@
       
     <link name="laser">
 		<visual>
-                        <material name="Black"/> 
-                        <axis xyz="1 0 0" rpy="0 0 0"/>   
-                        <origin xyz="-0.032 0.035 -0.045" rpy="${PI/2} 0 0"/>  
-               		<geometry>
+            <material name="Black"/> 
+            <axis xyz="1 0 0" rpy="0 0 0"/>   
+            <origin xyz="-0.032 0.035 -0.045" rpy="${PI/2} 0 0"/>  
+            <geometry>
 				<mesh filename="package://wild_thumper/include/meshes/rplidar.stl" scale="0.001 0.001 0.001"/> 
 			</geometry>
 		</visual>
@@ -60,16 +60,16 @@
 
 	<link name="base_imu_link">
 		<visual>
-                <geometry>
-                    <box size="0.02 0.02 0.02"/>
-                </geometry> 
-            </visual> 
+            <geometry>
+                <box size="0.02 0.02 0.02"/>
+            </geometry> 
+        </visual> 
 	</link>
  
     <joint name="base_link_joint" type="fixed">
+	    <parent link="base_footprint"/>
+	    <child link="base_link"/>
         <origin rpy="0 0 0" xyz="0 0 0.082 "/>
-        <child link="base_link"/>
-        <parent link="base_footprint"/>
     </joint> 
 
     <joint name="mount_spacer_joint" type="fixed">
