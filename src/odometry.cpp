@@ -63,7 +63,6 @@ int main(int argc, char** argv){
 
     x += delta_x;
     y += delta_y;
-    z = 0.082;
     th += delta_th;
 
     //since all odometry is 6DOF we'll need a quaternion created from yaw
@@ -104,7 +103,7 @@ int main(int argc, char** argv){
 
 
     //set the velocity
-    odom.child_frame_id = "base_link";
+    odom.child_frame_id = "base_footprint";
     odom.twist.twist.linear.x = vel_x;
     odom.twist.twist.linear.y = vel_y;
     odom.twist.twist.angular.z = vel_th;
