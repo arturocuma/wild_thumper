@@ -67,9 +67,9 @@
 	</link>
  
     <joint name="base_link_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 -0.082 "/>
-        <child link="base_footprint"/>
-        <parent link="base_link"/>
+        <origin rpy="0 0 0" xyz="0 0 0.082 "/>
+        <child link="base_link"/>
+        <parent link="base_footprint"/>
     </joint> 
 
     <joint name="mount_spacer_joint" type="fixed">
