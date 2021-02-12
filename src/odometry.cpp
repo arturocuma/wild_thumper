@@ -94,11 +94,28 @@ int main(int argc, char** argv){
     odom.pose.pose.position.z = z;
     odom.pose.pose.orientation = odom_quat;
 
+    //set the pose covariance
+    odom.pose.covariance = {0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            0.0, 0.05, 0.0, 0.0, 0.0, 0.0,
+                            0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.2, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.2, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.0, 0.2};
+
+
     //set the velocity
     odom.child_frame_id = "base_link";
     odom.twist.twist.linear.x = vel_x;
     odom.twist.twist.linear.y = vel_y;
     odom.twist.twist.angular.z = vel_th;
+
+    //set the twist covariance
+    odom.twist.covariance = {0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            0.0, 0.05, 0.0, 0.0, 0.0, 0.0,
+                            0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.2, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.2, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.0, 0.2};
 
     //publish the message
     odom_pub.publish(odom);
