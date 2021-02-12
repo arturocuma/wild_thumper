@@ -3,8 +3,9 @@
     <arg name="lidar_port" default="/dev/ttyUSB1" />
     <arg name="arduino_port" default="/dev/ttyUSB0" />
     <arg name="map_file" default="$(find wild_thumper)/include/map/map.yaml" /> 
+    <arg name="razor_config_file" default="$(find razor_imu_9dof)/config/razor.yaml"/>
 
-	<param name="robot_description" command="$(find xacro)/xacro.py $(find wild_thumper)/include/urdf/wild_thumper.urdf.xacro" />
+  	<param name="robot_description" command="$(find xacro)/xacro.py $(find wild_thumper)/include/urdf/wild_thumper.urdf.xacro" />
 
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
@@ -20,6 +21,11 @@
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
 
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping"/>  
+
+    <node pkg="razor_imu_9dof" type="imu_node.py" name="imu_node" output="screen">
+        <rosparam file="$(arg razor_config_file)" command="load"/>
+    </node>
+
     <!--    
     <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
 	    <param name="serial_port"         type="string" value="$(arg lidar_port)"/>

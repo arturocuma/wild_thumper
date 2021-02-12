@@ -11,7 +11,8 @@
                     <box size="0.28 0.31 0.000001"/>
                 </geometry> 
             </visual>    
-        </link>
+    </link>
+	*
 	<link name="base_link">
 		<collision>
 			<geometry>
@@ -25,9 +26,9 @@
 				<mesh filename="package://wild_thumper/include/meshes/wild_thumper_4wd.stl" /> 
 			</geometry>
 		</visual>
-       </link>
+    </link>
 
-        <link name="mount_spacers">
+    <link name="mount_spacers">
 		<visual>
             <material name="Black"/> 
             <origin xyz="0 0 0" rpy="0 0 0"/>  
