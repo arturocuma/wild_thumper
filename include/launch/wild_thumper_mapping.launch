@@ -17,8 +17,6 @@
       
     <node name="wild_thumper_odometry" pkg="wild_thumper" type="wild_thumper_odometry"/>
 
-    <node name="map_server" pkg="map_server" type="map_server"/>
-
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
         <param name="scan" value="laser"/>
         <param name="odom_frame" value="odom_combined"/>
