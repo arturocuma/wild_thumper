@@ -2,7 +2,6 @@
 <launch>
     <arg name="lidar_port" default="/dev/ttyUSB1" />
     <arg name="arduino_port" default="/dev/ttyUSB0" />
-    <arg name="map_file" default="$(find wild_thumper)/include/map/my_map.yaml" /> 
     <arg name="razor_config_file" default="$(find razor_imu_9dof)/config/razor.yaml"/>
 
   	<param name="robot_description" command="$(find xacro)/xacro.py $(find wild_thumper)/include/urdf/wild_thumper.urdf.xacro" />
@@ -18,7 +17,7 @@
       
     <node name="wild_thumper_odometry" pkg="wild_thumper" type="wild_thumper_odometry"/>
 
-    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+    <node name="map_server" pkg="map_server" type="map_server"/>
 
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
         <param name="scan" value="laser"/>
