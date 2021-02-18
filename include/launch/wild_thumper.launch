@@ -83,12 +83,12 @@
         <param name="update_min_d" value="0.2"/>
         <param name="update_min_a" value="0.5"/>
         <param name="resample_interval" value="1"/>
-        <param name="transform_tolerance" value="0.1"/>
+        <param name="transform_tolerance" value="0.12"/>
         <param name="recovery_alpha_slow" value="0.0"/>
         <param name="recovery_alpha_fast" value="0.0"/>
-        <param name="initial_pose_x" value="14.016"/> 
-        <param name="initial_pose_y" value="25.7500"/>
-        <param name="initial_pose_a" value="-3.0"/>
+        <param name="initial_pose_x" value="0"/> 
+        <param name="initial_pose_y" value="0"/>
+        <param name="initial_pose_a" value="0"/>
         <param name="initial_cov_xx" value="0.1"/> 
         <param name="initial_cov_yy" value="0.1"/>
         <param name="initial_cov_aa" value="0.1"/>
