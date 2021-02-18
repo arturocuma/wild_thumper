@@ -20,7 +20,7 @@
 
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
 
-    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping"/>  
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
         <param name="scan" value="laser"/>
     </node>
 
