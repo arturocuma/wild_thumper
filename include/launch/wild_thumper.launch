@@ -22,6 +22,7 @@
 
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
         <param name="scan" value="laser"/>
+        <param name="odom_frame" value="odom_combined"/>
     </node>
 
     <node name="imu_node"  pkg="razor_imu_9dof" type="imu_node.py" output="screen">
