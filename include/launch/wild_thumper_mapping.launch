@@ -20,6 +20,12 @@
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
         <param name="scan" value="laser"/>
         <param name="odom_frame" value="odom_combined"/>
+        <param name="base_frame" value="base_footprint"/>
+        <param name="xmin" value="-10.0"/>
+        <param name="ymin" value="-10.0"/>
+        <param name="xmax" value="10.0"/>
+        <param name="ymax" value="10.0"/>
+        <param name="delta" value="0.01"/>
     </node>
     
     <node name="imu_node"  pkg="razor_imu_9dof" type="imu_node.py" output="screen">
@@ -34,9 +40,7 @@
         <param name="odom_used" value="true"/>
         <param name="imu_used" value="true"/>
         <param name="vo_used" value="false"/>
-
         <remap from="imu_data" to="imu" />
-    
     </node>
        
     <node name="rplidarNode" pkg="rplidar_ros" type="rplidarNode" output="screen">
