@@ -95,11 +95,11 @@
     </node>
 
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-        <rosparam file="$(find wild_thumper)/2dnav/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-        <rosparam file="$(find wild_thumper)/2dnav/costmap_common_params.yaml" command="load" ns="local_costmap" />
-        <rosparam file="$(find wild_thumper)/2dnav/local_costmap_params.yaml" command="load" />
-        <rosparam file="$(find wild_thumper)/2dnav/global_costmap_params.yaml" command="load" /> 
-        <rosparam file="$(find wild_thumper)/2dnav/base_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find wild_thumper)/include/2dnav/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+        <rosparam file="$(find wild_thumper)/include/2dnav/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find wild_thumper)/include/2dnav/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find wild_thumper)/include/2dnav/global_costmap_params.yaml" command="load" /> 
+        <rosparam file="$(find wild_thumper)/include/2dnav/base_local_planner_params.yaml" command="load" />
     </node>
         
 </launch>
