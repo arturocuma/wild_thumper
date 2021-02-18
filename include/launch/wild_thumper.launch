@@ -21,6 +21,8 @@
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
 
     <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping"/>  
+        <param scan ="laser">
+    </node>
 
     <node name="imu_node"  pkg="razor_imu_9dof" type="imu_node.py" output="screen">
         <rosparam file="$(arg razor_config_file)" command="load"/>
