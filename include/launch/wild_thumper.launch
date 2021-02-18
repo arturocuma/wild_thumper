@@ -53,7 +53,6 @@
   	</node>
     
     <node pkg="amcl" type="amcl" name="amcl" respawn="false" output="screen">
-        <remap from="scan" to="laser" />
         <param name="transform_tolerance" value="0.2" />
         <param name="gui_publish_rate" value="10.0"/>
         <param name="save_pose_rate" value="0.5"/>
