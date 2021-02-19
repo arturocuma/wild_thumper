@@ -79,7 +79,7 @@
         <!-- laser model parameters-->
         <param name="laser_min_range" value="-1.0"/>
         <param name="laser_max_range" value="-1.0"/>
-        <param name="laser_max_beams" value="30"/>
+        <param name="laser_max_beams" value="200"/>
         <param name="laser_z_hit" value="0.95"/>
         <param name="laser_z_short" value="0.1"/>
         <param name="laser_z_max" value="0.05"/>
