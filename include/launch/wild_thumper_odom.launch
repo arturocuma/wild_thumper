@@ -16,17 +16,6 @@
     </node> 
       
     <node name="wild_thumper_odometry" pkg="wild_thumper" type="wild_thumper_odometry"/>
-
-    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
-        <param name="scan" value="laser"/>
-        <param name="odom_frame" value="odom_combined"/>
-        <param name="base_frame" value="base_footprint"/>
-        <param name="xmin" value="-10.0"/>
-        <param name="ymin" value="-10.0"/>
-        <param name="xmax" value="10.0"/>
-        <param name="ymax" value="10.0"/>
-        <param name="delta" value="0.05"/>
-    </node>
     
     <node name="imu_node"  pkg="razor_imu_9dof" type="-imu_node.py" output="screen">
         <rosparam file="$(arg razor_config_file)" command="load"/>
