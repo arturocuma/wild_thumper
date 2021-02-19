@@ -6,5 +6,8 @@
         "/usr/local/webots/lib/controller/python36",
         "/usr/local/webots/lib/controller/python27",
         "/usr/local/lib/python3.6"
-    ]
+    ],
+    "files.associations": {
+        "type_traits": "cpp"
+    }
 }

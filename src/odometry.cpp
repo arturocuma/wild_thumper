@@ -70,18 +70,18 @@ int main(int argc, char** argv){
 
     //first, we'll publish the transform over tf //Changed for robot_pose_ekf
     
-    //geometry_msgs::TransformStamped odom_trans;
-    //odom_trans.header.stamp = current_time;
-    //odom_trans.header.frame_id = "odom";
-    //odom_trans.child_frame_id = "base_footprint";
+    geometry_msgs::TransformStamped odom_trans;
+    odom_trans.header.stamp = current_time;
+    odom_trans.header.frame_id = "odom";
+    odom_trans.child_frame_id = "base_footprint";
 
-    //odom_trans.transform.translation.x = x;
-    //odom_trans.transform.translation.y = y;
-    //odom_trans.transform.translation.z = z;
-    //odom_trans.transform.rotation = odom_quat;
+    odom_trans.transform.translation.x = x;
+    odom_trans.transform.translation.y = y;
+    odom_trans.transform.translation.z = z;
+    odom_trans.transform.rotation = odom_quat;
 
     //send the transform
-    //odom_broadcaster.sendTransform(odom_trans);
+    odom_broadcaster.sendTransform(odom_trans);
 
     //next, we'll publish the odometry message over ROS
     nav_msgs::Odometry odom;
@@ -98,13 +98,13 @@ int main(int argc, char** argv){
     odom.pose.covariance = {0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
                             0.0, 0.05, 0.0, 0.0, 0.0, 0.0,
                             0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
-                            0.0, 0.0, 0.0, 0.2, 0.0, 0.0,
-                            0.0, 0.0, 0.0, 0.0, 0.2, 0.0,
-                            0.0, 0.0, 0.0, 0.0, 0.0, 0.2};
+                            0.0, 0.0, 0.0, 0.05, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.05, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.0, 0.05};
 
 
     //set the velocity
-    //odom.child_frame_id = "base_footprint";
+    odom.child_frame_id = "base_footprint";
     odom.twist.twist.linear.x = vel_x;
     odom.twist.twist.linear.y = vel_y;
     odom.twist.twist.angular.z = vel_th;
@@ -113,9 +113,9 @@ int main(int argc, char** argv){
     odom.twist.covariance = {0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
                             0.0, 0.05, 0.0, 0.0, 0.0, 0.0,
                             0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
-                            0.0, 0.0, 0.0, 0.2, 0.0, 0.0,
-                            0.0, 0.0, 0.0, 0.0, 0.2, 0.0,
-                            0.0, 0.0, 0.0, 0.0, 0.0, 0.2};
+                            0.0, 0.0, 0.0, 0.05, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.05, 0.0,
+                            0.0, 0.0, 0.0, 0.0, 0.0, 0.05};
 
     //publish the message
     odom_pub.publish(odom);
