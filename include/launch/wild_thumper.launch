@@ -78,7 +78,7 @@
         <!-- laser model parameters-->
         <param name="laser_min_range" value="-1.0"/>
         <param name="laser_max_range" value="-1.0"/>
-        <param name="laser_max_beams" value="100"/>
+        <param name="laser_max_beams" value="200"/>
         <param name="laser_z_hit" value="0.95"/>
         <param name="laser_z_short" value="0.1"/>
         <param name="laser_z_max" value="0.05"/>
@@ -88,12 +88,12 @@
         <param name="laser_likelihood_max_dist" value="2.0"/>
         <param name="laser_model_type" value="likelihood_field"/>
         <!-- odometry parameters-->
-        <param name="odom_model_type" value="diff"/>
-        <param name="odom_alpha1" value="0.2"/>
-        <param name="odom_alpha2" value="0.2"/>
-        <param name="odom_alpha3" value="0.2"/>
-        <param name="odom_alpha4" value="0.2"/>
-        <param name="odom_alpha5" value="0.2"/>
+        <param name="odom_model_type" value="diff-corrected"/>
+        <param name="odom_alpha1" value="0.005"/>
+        <param name="odom_alpha2" value="0.005"/>
+        <param name="odom_alpha3" value="0.005"/>
+        <param name="odom_alpha4" value="0.005"/>
+        <param name="odom_alpha5" value="0.005"/>
         <param name="odom_frame_id" value="odom_combined"/>
         <param name="base_frame_id" value="base_footprint"/>
         <param name="global_frame_id" value="map"/>
