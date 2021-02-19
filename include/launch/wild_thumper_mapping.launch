@@ -28,7 +28,7 @@
         <param name="delta" value="0.05"/>
     </node>
     
-    <node name="imu_node"  pkg="razor_imu_9dof" type="-imu_node.py" output="screen">
+    <node name="imu_node"  pkg="razor_imu_9dof" type="imu_node.py" output="screen">
         <rosparam file="$(arg razor_config_file)" command="load"/>
     </node>
 
