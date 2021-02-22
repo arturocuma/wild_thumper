@@ -104,7 +104,7 @@ int main(int argc, char** argv){
 
 
     //set the velocity
-    odom.child_frame_id = "base_footprint";
+    //odom.child_frame_id = "base_footprint";
     odom.twist.twist.linear.x = vel_x;
     odom.twist.twist.linear.y = vel_y;
     odom.twist.twist.angular.z = vel_th;
