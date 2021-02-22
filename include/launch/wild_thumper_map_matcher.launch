@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="lidar_port" default="/dev/ttyUSB1" />
+    <arg name="arduino_port" default="/dev/ttyUSB0" />
+    <arg name="map_file" default="$(find wild_thumper)/include/map/mymap.yaml" /> 
+    <arg name="razor_config_file" default="$(find razor_imu_9dof)/config/razor.yaml"/>
+
+  	<param name="robot_description" command="$(find xacro)/xacro.py $(find wild_thumper)/include/urdf/wild_thumper.urdf.xacro" />
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" >
+        <param name="_port" value="$(arg arduino_port)"/>
+        <param name="_baud" value="9600"/>   
+    </node> 
+  
+    <node name="rplidarNode" pkg="rplidar_ros" type="rplidarNode" output="screen">
+	    <param name="serial_port"         type="string" value="$(arg lidar_port)"/>
+	    <param name="serial_baudrate"     type="int"    value="115200"/>
+	    <param name="frame_id"            type="string" value="laser"/>
+	    <param name="inverted"            type="bool"   value="false"/>
+	    <param name="angle_compensate"    type="bool"   value="true"/>
+    </node>
+      
+    <node name="wild_thumper_odometry" pkg="wild_thumper" type="wild_thumper_odometry"/>
+    
+    <node name="imu_node"  pkg="razor_imu_9dof" type="imu_node.py" output="screen">
+        <rosparam file="$(arg razor_config_file)" command="load"/>
+    </node>
+
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">  
+        <param name="scan" value="laser"/>
+        <param name="odom_frame" value="odom"/>
+        <param name="base_frame" value="base_footprint"/>
+        <param name="xmin" value="-10.0"/>
+        <param name="ymin" value="-10.0"/>
+        <param name="xmax" value="10.0"/>
+        <param name="ymax" value="10.0"/>
+        <param name="delta" value="0.05"/>
+    </node>
+   
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find wild_thumper)/include/2dnav/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+        <rosparam file="$(find wild_thumper)/include/2dnav/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find wild_thumper)/include/2dnav/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find wild_thumper)/include/2dnav/global_costmap_params.yaml" command="load" /> 
+        <rosparam file="$(find wild_thumper)/include/2dnav/base_local_planner_params.yaml" command="load" />
+    </node>
+
+
+        
+</launch>
