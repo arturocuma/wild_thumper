@@ -71,22 +71,22 @@ int main(int argc, char** argv){
     //first, we'll publish the transform over tf //Changed for robot_pose_ekf
     
     geometry_msgs::TransformStamped odom_trans;
-    odom_trans.header.stamp = current_time;
-    odom_trans.header.frame_id = "odom_combined";
-    odom_trans.child_frame_id = "base_footprint";
+    // odom_trans.header.stamp = current_time;
+    // odom_trans.header.frame_id = "odom";
+    // odom_trans.child_frame_id = "base_footprint";
 
-    odom_trans.transform.translation.x = x;
-    odom_trans.transform.translation.y = y;
-    odom_trans.transform.translation.z = z;
-    odom_trans.transform.rotation = odom_quat;
+    // odom_trans.transform.translation.x = x;
+    // odom_trans.transform.translation.y = y;
+    // odom_trans.transform.translation.z = z;
+    // odom_trans.transform.rotation = odom_quat;
 
-    //send the transform
-    odom_broadcaster.sendTransform(odom_trans);
+    // //send the transform
+    // odom_broadcaster.sendTransform(odom_trans);
 
     //next, we'll publish the odometry message over ROS
     nav_msgs::Odometry odom;
     odom.header.stamp = current_time;
-    odom.header.frame_id = "odom_combined";
+    odom.header.frame_id = "odom";
 
     //set the position
     odom.pose.pose.position.x = x;
